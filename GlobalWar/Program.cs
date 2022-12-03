@@ -10,8 +10,8 @@ namespace GlobalWar
     {
         static class Program
         {
-            private static Vector2 _screenRes = new Vector2(1280, 720);
-            private const string GameTitle = "Global Conflict: Armageddon";
+            static Vector2 _screenRes = new Vector2(1280, 720);
+            const string GameTitle = "Global Conflict: Armageddon";
 
             static void Main(string[] args)
             {
@@ -29,7 +29,6 @@ namespace GlobalWar
                     HandleCoreInput();
                     DrawGame();
                 }
-                
                 CloseWindow();
             }
 
