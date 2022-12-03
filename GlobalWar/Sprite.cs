@@ -18,15 +18,29 @@ namespace GlobalWar
             texture = Raylib.LoadTexture(path);
             frames = frameCount;
             rec = new Rectangle(0, 0, texture.width / frameCount, texture.height);
-            cFrame = 1;
+            cFrame = 0;
         }
 
-        public void Draw(float x, float y)
+        ~Sprite()
         {
-            if (cFrame > frames) cFrame = 1;
+            Raylib.UnloadTexture(texture);
+        }
+
+        public void Draw(float x, float y, bool looping)
+        {
+            if (looping)
+            {
+                if (cFrame > frames) cFrame = 0;
+            }
+            else
+            {
+                if (cFrame > frames) cFrame = frames;
+            }
+
             Vector2 pos = new Vector2(x, y);
             rec.x = cFrame * (texture.width / frames);
             Raylib.DrawTextureRec(texture, rec, pos, Color.RAYWHITE);
+
             cFrame++;
         }
     }
