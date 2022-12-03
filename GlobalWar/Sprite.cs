@@ -8,7 +8,7 @@ namespace GlobalWar
 {
     class Sprite
     {
-        Texture2D texture;
+        public Texture2D texture;
         Rectangle rec;
         int frames;
         int cFrame;
