@@ -18,7 +18,7 @@ namespace GlobalWar
             texture = Raylib.LoadTexture(path);
             frames = frameCount;
             rec = new Rectangle(0, 0, texture.width / frameCount, texture.height);
-            cFrame = 0;
+            cFrame = 1;
         }
 
         public void Draw(float x, float y)
