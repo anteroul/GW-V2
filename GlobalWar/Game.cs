@@ -15,23 +15,6 @@ namespace GlobalWar
             Sprite _map;
             Sprite _button;
 
-            Dictionary<int, string> _actions = new Dictionary<int, string>()
-            {
-                { 0, "none" },
-                { 1, "missile" },
-                { 2, "aircraft" },
-                { 3, "anti-missile" },
-                { 4, "anti-aircraft" },
-                { 5, "soldier" },
-                { 6, "nuke" },
-                { 7, "chemical" },
-                { 8, "spy" },
-                { 9, "submarine" },
-                { 10, "manufacture" },
-                { 11, "propaganda" },
-                { 12, "diplomacy" }
-            };
-
             public Game(Vector2 screenRes, string title)
             {
                 _screenRes = screenRes;

@@ -7,6 +7,7 @@ namespace GlobalWar
         public int FriendshipPoints;
         public int Population;
         public bool Alive;
+        public PlayerData Data;
 
         public Opponent(string name, string ideology)
         {
@@ -15,6 +16,7 @@ namespace GlobalWar
             FriendshipPoints = 50;
             Population = 250;
             Alive = true;
+            Data = new PlayerData();
         }
 
         public void UpdateStatus()
