@@ -39,6 +39,8 @@ namespace GlobalWar
             private GameState _gameState;
             // Fonts:
             private Font _menuFont;
+            // Sounds:
+            private Sound _buttonPress;
 
             public Game(Vector2 screenRes, string title)
             {
@@ -48,6 +50,7 @@ namespace GlobalWar
                 Console.WriteLine("Initializing window with a resolution of " + screenRes + "\n");
                 InitWindow((int)screenRes.X, (int)screenRes.Y, title);
                 SetTargetFPS(GetMonitorRefreshRate(GetCurrentMonitor()));
+                InitAudioDevice();
             }
 
             public void RunGame()
@@ -63,6 +66,8 @@ namespace GlobalWar
                 _quitBtn = new Button("QUIT", _menuButton, (int)_screenRes.X / 3, 500, 480, 140);
                 // fonts:
                 _menuFont = LoadFont("assets/fonts/cold.otf");
+                // sounds:
+                _buttonPress = LoadSound("assets/sounds/button.wav");
 
                 while (!WindowShouldClose() && !_quit)
                 {
@@ -72,6 +77,8 @@ namespace GlobalWar
                 }
 
                 // unloading:
+                UnloadSound(_buttonPress);
+                CloseAudioDevice();
                 UnloadTexture(_menuButton.texture);
                 UnloadTexture(_panel.texture);
                 UnloadTexture(_map.texture);
@@ -85,7 +92,9 @@ namespace GlobalWar
                 switch (_gameState)
                 {
                     case GameState.MainMenu:
-                        if (OnClickUI(_quitBtn.Rect)) _quit = true;
+                        if (MenuButtonHit(_quitBtn)) _quit = true;
+                        if (MenuButtonHit(_helpBtn)) _gameState = GameState.Help;
+                        if (MenuButtonHit(_playBtn)) _gameState = GameState.GameSetup;
                         break;
                     case GameState.Help:
                         break;
@@ -134,6 +143,13 @@ namespace GlobalWar
                 
                 DrawFPS((int)_screenRes.X / 32, (int)_screenRes.Y / 32);
                 EndDrawing();
+            }
+
+            bool MenuButtonHit(Button button)
+            {
+                if (!OnClickUI(button.Rect)) return false;
+                PlaySound(_buttonPress);
+                return true;
             }
         }
     }
