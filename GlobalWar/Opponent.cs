@@ -9,14 +9,14 @@ namespace GlobalWar
         public bool Alive;
         public PlayerData Data;
 
-        public Opponent(string name, string ideology)
+        public Opponent(int id, string name, string ideology)
         {
             Name = name;
             Ideology = ideology;
             FriendshipPoints = 50;
             Population = 250;
             Alive = true;
-            Data = new PlayerData();
+            Data = new PlayerData(id);
         }
 
         public void UpdateStatus()

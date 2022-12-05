@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace GlobalWar
+﻿namespace GlobalWar
 {
     public struct Player
     {
@@ -16,7 +12,7 @@ namespace GlobalWar
             Ideology = ideology;
             Population = 250;
             Alive = true;
-            Data = new PlayerData();
+            Data = new PlayerData(0);
         }
     }
 }

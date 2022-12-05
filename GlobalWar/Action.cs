@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace GlobalWar
+﻿namespace GlobalWar
 {
     public struct Action
     {

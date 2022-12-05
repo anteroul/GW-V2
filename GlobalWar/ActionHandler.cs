@@ -1,37 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace GlobalWar
+﻿namespace GlobalWar
 {
     interface ActionHandler
     {
         public enum Move { None, Missile, Aircraft, AntiMissile, AntiAir, Soldier, Nuke, Chem, Spy, Sub, Man, Prop, Dip };
 
-        public bool ValidMove(Move move, bool attack, int missiles, int aircraft, int ar, int aa, int soldiers, int nukes, int chemical, int spies, int subs)
+        public bool ValidMove(Move move, PlayerData p)
         {
             switch (move)
             {
                 case Move.Missile:
-                    if (missiles > 0)
+                    if (p.missiles > 0)
                     {
                         return true;
                     }
                     break;
                 case Move.Aircraft:
-                    if (aircraft > 0)
+                    if (p.aircraft > 0)
                     {
                         return true;
                     }
                     break;
                 case Move.AntiMissile:
-                    if (ar > 0)
+                    if (p.ar > 0)
                     {
                         return true;
                     }
                     break;
                 case Move.AntiAir:
-                    if (aa > 0)
+                    if (p.aa > 0)
                     {
                         return true;
                     }

@@ -14,6 +14,7 @@ namespace GlobalWar
             Vector2 _screenRes;
             Sprite _map;
             Sprite _button;
+            Player _player;
 
             public Game(Vector2 screenRes, string title)
             {

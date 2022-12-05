@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace GlobalWar
+﻿namespace GlobalWar
 {
     public struct PlayerData
     {
+        public int Id;
         public int missiles;
         public int aircraft;
         public int ar;
@@ -16,8 +13,9 @@ namespace GlobalWar
         public int spies;
         public int subs;
 
-        public PlayerData(int difficulty)
+        public PlayerData(int _id)
         {
+            Id = _id;
             missiles = 0;
             aircraft = 1;
             ar = 1;
