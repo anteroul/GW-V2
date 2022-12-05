@@ -23,11 +23,7 @@ namespace GlobalWar
 
         public static bool OnClickUI(Rectangle button)
         {
-            if (Raylib.IsMouseButtonPressed(0) && OnRollOverUI(button))
-            {
-                return Raylib.IsMouseButtonReleased(0) && OnRollOverUI(button);
-            }
-            return false;
+            return Raylib.IsMouseButtonPressed(0) && OnRollOverUI(button);
         }
     }
 }

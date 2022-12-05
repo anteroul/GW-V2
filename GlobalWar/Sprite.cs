@@ -6,9 +6,9 @@ namespace GlobalWar
     public class Sprite
     {
         public Texture2D texture;
-        Rectangle rec;
-        int frames;
-        int cFrame;
+        private Rectangle rec;
+        private int frames;
+        private int cFrame;
 
         public Sprite(string path, int frameCount)
         {

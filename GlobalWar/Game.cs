@@ -20,7 +20,7 @@ namespace GlobalWar
                 GameOver,
                 Victory
             }
-
+            
             private readonly Vector2 _screenRes;
             // Sprites:
             private Sprite _panel;
@@ -36,6 +36,8 @@ namespace GlobalWar
             // Gameplay variables:
             private GameState _gameState;
             private bool _quit;
+            // Fonts:
+            private Font _menuFont;
 
             public Game(Vector2 screenRes, string title)
             {
@@ -55,11 +57,13 @@ namespace GlobalWar
                 _button = new Sprite("assets/sprites/button7.png", 7);
                 _menuButton = new Sprite("assets/sprites/menuButton1.png", 1);
                 // initialization of buttons:
-                _playBtn = new Button("Play", _menuButton, (int)_screenRes.X / 3, 100, 480, 140);
-                _helpBtn = new Button("Help", _menuButton, (int)_screenRes.X / 3, 300, 480, 140);
-                _quitBtn = new Button("Quit", _menuButton, (int)_screenRes.X / 3, 500, 480, 140);
+                _playBtn = new Button("PLAY", _menuButton, (int)_screenRes.X / 3, 100, 480, 140);
+                _helpBtn = new Button("HELP", _menuButton, (int)_screenRes.X / 3, 300, 480, 140);
+                _quitBtn = new Button("QUIT", _menuButton, (int)_screenRes.X / 3, 500, 480, 140);
+                // fonts:
+                _menuFont = LoadFont("assets/fonts/nukefont.ttf");
 
-                while (!WindowShouldClose())
+                while (!WindowShouldClose() && !_quit)
                 {
                     HandleCoreInput();
                     UpdateGame();
@@ -71,6 +75,7 @@ namespace GlobalWar
                 UnloadTexture(_panel.texture);
                 UnloadTexture(_map.texture);
                 UnloadTexture(_button.texture);
+                UnloadFont(_menuFont);
                 CloseWindow();
             }
 
@@ -107,9 +112,9 @@ namespace GlobalWar
                 switch (_gameState)
                 {
                     case GameState.MainMenu:
-                        _playBtn.Draw();
-                        _helpBtn.Draw();
-                        _quitBtn.Draw();
+                        _playBtn.Draw(_menuFont, 2);
+                        _helpBtn.Draw(_menuFont, 2);
+                        _quitBtn.Draw(_menuFont, 2);
                         break;
                     case GameState.Help:
                         break;

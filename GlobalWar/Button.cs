@@ -1,3 +1,4 @@
+using System.Numerics;
 using Raylib_cs;
 
 namespace GlobalWar
@@ -15,12 +16,13 @@ namespace GlobalWar
             Rect = new Rectangle(x, y, w, h);
         }
 
-        public void Draw()
+        public void Draw(Font font, int spacing)
         {
             var textColor = IInput.OnRollOverUI(Rect) ? Color.RED : Color.WHITE;
+            Vector2 pos = new Vector2((int)Rect.x + (int)Rect.width / 2 - Raylib.MeasureText(_label, (int)Rect.height) / 2, (int)Rect.y);
             
             Graphic.Draw(Rect.x, Rect.y, false);
-            Raylib.DrawText(_label, (int)Rect.x + (int)Rect.width / 2 - Raylib.MeasureText(_label, (int)Rect.height) / 2, (int)Rect.y, (int)Rect.height, textColor);
+            Raylib.DrawTextEx(font, _label, pos, (int)Rect.height, spacing, textColor);
         }
     }
 }
