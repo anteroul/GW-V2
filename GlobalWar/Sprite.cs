@@ -3,7 +3,7 @@ using System.Numerics;
 
 namespace GlobalWar
 {
-    class Sprite
+    public class Sprite
     {
         public Texture2D texture;
         Rectangle rec;
@@ -14,6 +14,7 @@ namespace GlobalWar
         {
             texture = Raylib.LoadTexture(path);
             frames = frameCount;
+            // ReSharper disable once PossibleLossOfFraction
             rec = new Rectangle(0, 0, texture.width / frameCount, texture.height);
             cFrame = 0;
         }
