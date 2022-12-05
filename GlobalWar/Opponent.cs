@@ -1,4 +1,5 @@
 using System;
+using Raylib_cs;
 
 namespace GlobalWar
 {
@@ -35,7 +36,7 @@ namespace GlobalWar
 
         public void DrawAvatar(int x, int y)
         {
-            if (Alive) _avatar?.Draw(x, y, false);
+            _avatar?.Draw(x, y, false);
         }
     }
 }

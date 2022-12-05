@@ -56,7 +56,9 @@ namespace GlobalWar
                 _leaderBtn = new LeaderButton[13];
                 _opponents = new Opponent[5];
                 _leaderIndex = 0;
+
                 Console.WriteLine("Initializing window with a resolution of " + screenRes + "\n");
+                
                 InitWindow((int)screenRes.X, (int)screenRes.Y, title);
                 SetTargetFPS(GetMonitorRefreshRate(GetCurrentMonitor()));
                 InitAudioDevice();
@@ -65,6 +67,7 @@ namespace GlobalWar
             public void RunGame()
             {
                 // initialization of sprites:
+                
                 _panel = new Sprite("assets/sprites/panel1.png", 1);
                 _map = new Sprite("assets/sprites/map1.png", 1);
                 _button = new Sprite("assets/sprites/button7.png", 7);
@@ -97,9 +100,14 @@ namespace GlobalWar
                 _helpBtn = new Button("HELP", _menuButton, (int)_screenRes.X / 2, 500, 120, 32);
                 _quitBtn = new Button("QUIT", _menuButton, (int)_screenRes.X / 2, 600, 120, 32);
                 _backBtn = new Button("BACK", _menuButton, (int)_screenRes.X / 2, 600, 120, 32);
+                
                 // fonts:
+                
                 _menuFont = LoadFont("assets/fonts/cold.otf");
+                
+                
                 // sounds:
+                
                 _buttonPress = LoadSound("assets/sounds/button.wav");
 
                 while (!WindowShouldClose() && !_quit)
@@ -142,6 +150,7 @@ namespace GlobalWar
                         {
                             if (_leaderIndex < 4)
                                 _leaderIndex = i.SetEnemy(_opponents[_leaderIndex], _leaderIndex, _buttonPress);
+                            else _gameState = GameState.GameplayOne;
                         }
                         break;
                     case GameState.GameOver:
@@ -174,7 +183,6 @@ namespace GlobalWar
                         _backBtn.Draw(_menuFont, 6);
                         break;
                     case GameState.GameSetup:
-                        
                         foreach (var i in _leaderBtn)
                         {
                             if (i.IsVisible())
@@ -188,7 +196,6 @@ namespace GlobalWar
                                     GetScreenHeight() / 5 * 4, 32, Color.RED);
                             }
                         }
-
                         break;
                     case GameState.GameOver:
                         break;
