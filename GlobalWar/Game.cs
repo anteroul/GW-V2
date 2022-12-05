@@ -37,6 +37,7 @@ namespace GlobalWar
             private Button _helpBtn;
             private Button _quitBtn;
             private Button _backBtn;
+            private Button[] _leaderBtn;
             // Gameplay variables:
             private GameState _gameState;
             // Fonts:
@@ -50,6 +51,7 @@ namespace GlobalWar
                 _gameState = GameState.MainMenu;
                 _screenRes = screenRes;
                 _leaders = new Sprite[13];
+                _leaderBtn = new Button[13];
                 Console.WriteLine("Initializing window with a resolution of " + screenRes + "\n");
                 InitWindow((int)screenRes.X, (int)screenRes.Y, title);
                 SetTargetFPS(GetMonitorRefreshRate(GetCurrentMonitor()));
@@ -78,7 +80,15 @@ namespace GlobalWar
                 _leaders[11] = new Sprite("assets/sprites/leaders/putin1.png", 1);
                 _leaders[12] = new Sprite("assets/sprites/leaders/raisi1.png", 1);
                 
+                
                 // initialization of buttons:
+
+                for (var i = 0; i < 13; i++)
+                {
+                    _leaderBtn[i] = new Button("", _leaders[i], GetScreenWidth() / 13 * i.GetHashCode(),
+                        GetScreenHeight() / 2, _leaders[i].texture.width, _leaders[i].texture.height);
+                }
+                
                 _playBtn = new Button("PLAY", _menuButton, (int)_screenRes.X / 2, 400, 120, 32);
                 _helpBtn = new Button("HELP", _menuButton, (int)_screenRes.X / 2, 500, 120, 32);
                 _quitBtn = new Button("QUIT", _menuButton, (int)_screenRes.X / 2, 600, 120, 32);
@@ -155,10 +165,17 @@ namespace GlobalWar
                         _backBtn.Draw(_menuFont, 6);
                         break;
                     case GameState.GameSetup:
+                        /*
                         for (var i = 0; i < 13; i++)
                         {
                             // ReSharper disable once PossibleLossOfFraction
                             _leaders[i].Draw(GetScreenWidth() / 13 * i.GetHashCode(), GetScreenHeight() / 2, false);
+                        }
+                        */
+
+                        foreach (var i in _leaderBtn)
+                        {
+                            i.Draw(_menuFont, 1);
                         }
                         
                         break;
