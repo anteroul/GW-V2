@@ -21,21 +21,22 @@ namespace GlobalWar
                 Victory
             }
             
+            public Player Player; // holds player data
+
+            // Window variables:
             private readonly Vector2 _screenRes;
+            private bool _quit;
             // Sprites:
             private Sprite _panel;
             private Sprite _map;
             private Sprite _button;
             private Sprite _menuButton;
-            // Misc entities:
-            private Player _player; // holds player data
             // Buttons:
             private Button _playBtn;
             private Button _helpBtn;
             private Button _quitBtn;
             // Gameplay variables:
             private GameState _gameState;
-            private bool _quit;
             // Fonts:
             private Font _menuFont;
 
@@ -61,7 +62,7 @@ namespace GlobalWar
                 _helpBtn = new Button("HELP", _menuButton, (int)_screenRes.X / 3, 300, 480, 140);
                 _quitBtn = new Button("QUIT", _menuButton, (int)_screenRes.X / 3, 500, 480, 140);
                 // fonts:
-                _menuFont = LoadFont("assets/fonts/nukefont.ttf");
+                _menuFont = LoadFont("assets/fonts/cold.otf");
 
                 while (!WindowShouldClose() && !_quit)
                 {
@@ -112,9 +113,9 @@ namespace GlobalWar
                 switch (_gameState)
                 {
                     case GameState.MainMenu:
-                        _playBtn.Draw(_menuFont, 2);
-                        _helpBtn.Draw(_menuFont, 2);
-                        _quitBtn.Draw(_menuFont, 2);
+                        _playBtn.Draw(_menuFont, 6);
+                        _helpBtn.Draw(_menuFont, 6);
+                        _quitBtn.Draw(_menuFont, 6);
                         break;
                     case GameState.Help:
                         break;
