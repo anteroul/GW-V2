@@ -7,7 +7,7 @@ namespace GlobalWar
     {
         static class Program
         {
-            static Vector2 _screenRes = new Vector2(1280, 720);
+            static readonly Vector2 ScreenRes = new Vector2(1280, 720);
             const string GameTitle = "Global Conflict: Armageddon";
 
             static void Main(string[] args)
@@ -17,7 +17,7 @@ namespace GlobalWar
                 Console.WriteLine("Platform: " + Environment.OSVersion);
                 Console.WriteLine("CPU core count: " + Environment.ProcessorCount);
 
-                Game game = new Game(_screenRes, GameTitle);
+                Game game = new Game(ScreenRes, GameTitle);
                 game.RunGame();
             }
         }
