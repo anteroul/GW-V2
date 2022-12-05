@@ -31,10 +31,12 @@ namespace GlobalWar
             private Sprite _map;
             private Sprite _button;
             private Sprite _menuButton;
+            private Sprite[] _leaders;
             // Buttons:
             private Button _playBtn;
             private Button _helpBtn;
             private Button _quitBtn;
+            private Button _backBtn;
             // Gameplay variables:
             private GameState _gameState;
             // Fonts:
@@ -47,6 +49,7 @@ namespace GlobalWar
                 _quit = false;
                 _gameState = GameState.MainMenu;
                 _screenRes = screenRes;
+                _leaders = new Sprite[13];
                 Console.WriteLine("Initializing window with a resolution of " + screenRes + "\n");
                 InitWindow((int)screenRes.X, (int)screenRes.Y, title);
                 SetTargetFPS(GetMonitorRefreshRate(GetCurrentMonitor()));
@@ -60,10 +63,26 @@ namespace GlobalWar
                 _map = new Sprite("assets/sprites/map1.png", 1);
                 _button = new Sprite("assets/sprites/button7.png", 7);
                 _menuButton = new Sprite("assets/sprites/menuButton1.png", 1);
+
+                _leaders[0] = new Sprite("assets/sprites/leaders/erdogan1.png", 1);
+                _leaders[1] = new Sprite("assets/sprites/leaders/herzog1.png", 1);
+                _leaders[2] = new Sprite("assets/sprites/leaders/biden1.png", 1);
+                _leaders[3] = new Sprite("assets/sprites/leaders/boris1.png", 1);
+                _leaders[4] = new Sprite("assets/sprites/leaders/assad1.png", 1);
+                _leaders[5] = new Sprite("assets/sprites/leaders/kimjong1.png", 1);
+                _leaders[6] = new Sprite("assets/sprites/leaders/kishida1.png", 1);
+                _leaders[7] = new Sprite("assets/sprites/leaders/macron1.png", 1);
+                _leaders[8] = new Sprite("assets/sprites/leaders/sanna1.png", 1);
+                _leaders[9] = new Sprite("assets/sprites/leaders/xi1.png", 1);
+                _leaders[10] = new Sprite("assets/sprites/leaders/zelensky1.png", 1);
+                _leaders[11] = new Sprite("assets/sprites/leaders/putin1.png", 1);
+                _leaders[12] = new Sprite("assets/sprites/leaders/raisi1.png", 1);
+                
                 // initialization of buttons:
-                _playBtn = new Button("PLAY", _menuButton, (int)_screenRes.X / 3, 100, 480, 140);
-                _helpBtn = new Button("HELP", _menuButton, (int)_screenRes.X / 3, 300, 480, 140);
-                _quitBtn = new Button("QUIT", _menuButton, (int)_screenRes.X / 3, 500, 480, 140);
+                _playBtn = new Button("PLAY", _menuButton, (int)_screenRes.X / 2, 400, 120, 32);
+                _helpBtn = new Button("HELP", _menuButton, (int)_screenRes.X / 2, 500, 120, 32);
+                _quitBtn = new Button("QUIT", _menuButton, (int)_screenRes.X / 2, 600, 120, 32);
+                _backBtn = new Button("BACK", _menuButton, (int)_screenRes.X / 2, 600, 120, 32);
                 // fonts:
                 _menuFont = LoadFont("assets/fonts/cold.otf");
                 // sounds:
@@ -77,6 +96,11 @@ namespace GlobalWar
                 }
 
                 // unloading:
+                foreach (var i in _leaders)
+                {
+                    UnloadTexture(i.texture);
+                }
+                
                 UnloadSound(_buttonPress);
                 CloseAudioDevice();
                 UnloadTexture(_menuButton.texture);
@@ -97,6 +121,7 @@ namespace GlobalWar
                         if (MenuButtonHit(_playBtn)) _gameState = GameState.GameSetup;
                         break;
                     case GameState.Help:
+                        if (MenuButtonHit(_backBtn)) _gameState = GameState.MainMenu;
                         break;
                     case GameState.GameSetup:
                         break;
@@ -127,8 +152,15 @@ namespace GlobalWar
                         _quitBtn.Draw(_menuFont, 6);
                         break;
                     case GameState.Help:
+                        _backBtn.Draw(_menuFont, 6);
                         break;
                     case GameState.GameSetup:
+                        for (var i = 0; i < 13; i++)
+                        {
+                            // ReSharper disable once PossibleLossOfFraction
+                            _leaders[i].Draw(GetScreenWidth() / 13 * i.GetHashCode(), GetScreenHeight() / 2, false);
+                        }
+                        
                         break;
                     case GameState.GameOver:
                         break;
