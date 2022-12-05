@@ -140,7 +140,7 @@ namespace GlobalWar
                     case GameState.GameSetup:
                         foreach (var i in _leaderBtn)
                         {
-                            if (_leaderIndex < 5)
+                            if (_leaderIndex < 4)
                                 _leaderIndex = i.SetEnemy(_opponents[_leaderIndex], _leaderIndex, _buttonPress);
                         }
                         break;
@@ -174,14 +174,7 @@ namespace GlobalWar
                         _backBtn.Draw(_menuFont, 6);
                         break;
                     case GameState.GameSetup:
-                        /*
-                        for (var i = 0; i < 13; i++)
-                        {
-                            // ReSharper disable once PossibleLossOfFraction
-                            _leaders[i].Draw(GetScreenWidth() / 13 * i.GetHashCode(), GetScreenHeight() / 2, false);
-                        }
-                        */
-
+                        
                         foreach (var i in _leaderBtn)
                         {
                             if (i.IsVisible())
@@ -195,7 +188,7 @@ namespace GlobalWar
                                     GetScreenHeight() / 5 * 4, 32, Color.RED);
                             }
                         }
-                        
+
                         break;
                     case GameState.GameOver:
                         break;

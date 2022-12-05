@@ -1,3 +1,5 @@
+using System;
+
 namespace GlobalWar
 {
     public struct Opponent
@@ -8,8 +10,10 @@ namespace GlobalWar
         public int Population;
         public bool Alive;
         public PlayerData Data;
+        
+        private Sprite _avatar;
 
-        public Opponent(int id, string name, string ideology)
+        public Opponent(int id, string name, string ideology, Sprite avatar)
         {
             Name = name;
             Ideology = ideology;
@@ -17,6 +21,8 @@ namespace GlobalWar
             Population = 250;
             Alive = true;
             Data = new PlayerData(id);
+            _avatar = avatar;
+            Console.WriteLine(id + ", " + Name + ", " + Ideology);
         }
 
         public void UpdateStatus()
@@ -25,6 +31,11 @@ namespace GlobalWar
             if (Population > 0) return;
             Population = 0;
             Alive = false;
+        }
+
+        public void DrawAvatar(int x, int y)
+        {
+            if (Alive) _avatar?.Draw(x, y, false);
         }
     }
 }

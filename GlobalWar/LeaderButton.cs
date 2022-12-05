@@ -23,55 +23,55 @@ namespace GlobalWar
             switch (_id)
             {
                 case 0:
-                    opponent = new Opponent(index, "Erdogan", "Muslim");
+                    opponent = new Opponent(index, "Erdogan", "Muslim", Btn.Graphic);
                     _visible = false;
                     return index + 1;
                 case 1:
-                    opponent = new Opponent(index, "Isaac Herzog", "Jewish");
+                    opponent = new Opponent(index, "Isaac Herzog", "Jewish", Btn.Graphic);
                     _visible = false;
                     return index + 1;
                 case 2:
-                    opponent = new Opponent(index, "Joe Biden", "Liberal");
+                    opponent = new Opponent(index, "Joe Biden", "Liberal", Btn.Graphic);
                     _visible = false;
                     return index + 1;
                 case 3:
-                    opponent = new Opponent(index, "Boris Johnson", "Conservative");
+                    opponent = new Opponent(index, "Boris Johnson", "Conservative", Btn.Graphic);
                     _visible = false;
                     return index + 1;
                 case 4:
-                    opponent = new Opponent(index, "Bashar al-Assad", "Nationalist");
+                    opponent = new Opponent(index, "Bashar al-Assad", "Nationalist", Btn.Graphic);
                     _visible = false;
                     return index + 1;
                 case 5:
-                    opponent = new Opponent(index, "Kim Jong Un", "Communist");
+                    opponent = new Opponent(index, "Kim Jong Un", "Communist", Btn.Graphic);
                     _visible = false;
                     return index + 1;
                 case 6:
-                    opponent = new Opponent(index, "Fumio Kishida", "Conservative");
+                    opponent = new Opponent(index, "Fumio Kishida", "Conservative", Btn.Graphic);
                     _visible = false;
                     return index + 1;
                 case 7:
-                    opponent = new Opponent(index, "Emmanuel Macron", "Liberal");
+                    opponent = new Opponent(index, "Emmanuel Macron", "Liberal", Btn.Graphic);
                     _visible = false;
                     return index + 1;
                 case 8:
-                    opponent = new Opponent(index, "Sanna Marin", "Liberal");
+                    opponent = new Opponent(index, "Sanna Marin", "Liberal", Btn.Graphic);
                     _visible = false;
                     return index + 1;
                 case 9:
-                    opponent = new Opponent(index, "Xi Jingping", "Communist");
+                    opponent = new Opponent(index, "Xi Jingping", "Communist", Btn.Graphic);
                     _visible = false;
                     return index + 1;
                 case 10:
-                    opponent = new Opponent(index, "Volodymyr Zelensky", "Jewish");
+                    opponent = new Opponent(index, "Volodymyr Zelensky", "Jewish", Btn.Graphic);
                     _visible = false;
                     return index + 1;
                 case 11:
-                    opponent = new Opponent(index, "Vladimir Putin", "Nationalist");
+                    opponent = new Opponent(index, "Vladimir Putin", "Nationalist", Btn.Graphic);
                     _visible = false;
                     return index + 1;
                 case 12:
-                    opponent = new Opponent(index, "Ebrahim Raisi", "Muslim");
+                    opponent = new Opponent(index, "Ebrahim Raisi", "Muslim", Btn.Graphic);
                     _visible = false;
                     return index + 1;
             }
