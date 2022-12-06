@@ -12,7 +12,7 @@
             Ideology = ideology;
             Population = 250;
             Alive = true;
-            Data = new PlayerData(0);
+            Data = new PlayerData(4);
         }
     }
 }

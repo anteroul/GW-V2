@@ -21,31 +21,52 @@ namespace GlobalWar
                 Victory
             }
             
-            public Player Player; // holds player data
+            public Player Player;
+
 
             // Window variables:
             private readonly Vector2 _screenRes;
+
             private bool _quit;
+
             // Sprites:
             private Sprite _panel;
+
             private Sprite _map;
+
             private Sprite _button;
+
             private Sprite _menuButton;
+
             private Sprite[] _leaders;
+
+            private Sprite[] _ideologies;
+
             // Buttons:
             private Button _playBtn;
+
             private Button _helpBtn;
+
             private Button _quitBtn;
+
             private Button _backBtn;
+
             private LeaderButton[] _leaderBtn;
+
+            private IdeologyButton[] _ideologyButtons;
+
             // Gameplay variables:
             private GameState _gameState;
+
             private Opponent[] _opponents;
+
             private int _leaderIndex;
             // Fonts:
             private Font _menuFont;
+
             // Sounds:
             private Sound _buttonPress;
+
 
             public Game(Vector2 screenRes, string title)
             {
@@ -55,6 +76,7 @@ namespace GlobalWar
                 _leaders = new Sprite[13];
                 _leaderBtn = new LeaderButton[13];
                 _opponents = new Opponent[5];
+                _ideologyButtons = new IdeologyButton[5];
                 _leaderIndex = 0;
 
                 Console.WriteLine("Initializing window with a resolution of " + screenRes + "\n");
@@ -86,8 +108,15 @@ namespace GlobalWar
                 _leaders[10] = new Sprite("assets/sprites/leaders/zelensky1.png", 1);
                 _leaders[11] = new Sprite("assets/sprites/leaders/putin1.png", 1);
                 _leaders[12] = new Sprite("assets/sprites/leaders/raisi1.png", 1);
-                
-                
+
+                /*
+                Sprite religionM = new Sprite("assets/sprites/religions/islam1.png", 1);
+                Sprite religionC = new Sprite("assets/sprites/religions/communism1.png", 1);
+                Sprite religionW = new Sprite("assets/sprites/religions/christian1.png", 1);
+                Sprite religionJ = new Sprite("assets/sprites/religions/judaism1.png", 1);
+                Sprite religionN = new Sprite("assets/sprites/religions/nationalism1.png", 1);
+                */
+
                 // initialization of buttons:
 
                 for (var i = 0; i < 13; i++)
@@ -95,6 +124,47 @@ namespace GlobalWar
                     _leaderBtn[i] = new LeaderButton(i, _leaders[i], GetScreenWidth() / 13 * i.GetHashCode(),
                         GetScreenHeight() / 2, _leaders[i].texture.width, _leaders[i].texture.height);
                 }
+                
+                /*
+                for (var i = 0; i < 6; i++)
+                {
+                    int j = i + 1;
+                    string religion;
+                    Sprite icon;
+
+                    switch (j)
+                    {
+                        case 1:
+                            religion = "Muslim";
+                            icon = religionM;
+                            break;
+                        case 2:
+                            religion = "Communist";
+                            icon = religionC;
+                            break;
+                        case 3:
+                            religion = "Christian";
+                            icon = religionW;
+                            break;
+                        case 4:
+                            religion = "Jewish";
+                            icon = religionJ;
+                            break;
+                        case 5:
+                            religion = "Nationalist";
+                            icon = religionN;
+                            break;
+                        default:
+                            religion = "Liberal";
+                            icon = religionW;
+                            break;
+                    }
+
+                    _ideologyButtons[i] = new IdeologyButton(religion, 
+                        icon, GetScreenWidth() / 8 + (j * (GetScreenWidth() / 8)), GetScreenHeight() / 4, 
+                        icon.texture.width, icon.texture.height);
+                }
+                */
                 
                 _playBtn = new Button("PLAY", _menuButton, (int)_screenRes.X / 2, 400, 120, 32);
                 _helpBtn = new Button("HELP", _menuButton, (int)_screenRes.X / 2, 500, 120, 32);
@@ -150,7 +220,7 @@ namespace GlobalWar
                         {
                             if (_leaderIndex < 4)
                                 _leaderIndex = i.SetEnemy(_opponents[_leaderIndex], _leaderIndex, _buttonPress);
-                            else _gameState = GameState.GameplayOne;
+                            //else _gameState = GameState.GameplayOne;
                         }
                         break;
                     case GameState.GameOver:
@@ -188,6 +258,10 @@ namespace GlobalWar
                             if (i.IsVisible())
                             {
                                 i.Btn.Draw(_menuFont, 1);
+                            }
+                            else
+                            {
+                                DrawRectangle((int)i.Btn.Rect.x, (int)i.Btn.Rect.y, i.Btn.Graphic.texture.width, i.Btn.Graphic.texture.height, Color.BLACK);
                             }
                             if (OnRollOverUI(i.Btn.Rect))
                             {
